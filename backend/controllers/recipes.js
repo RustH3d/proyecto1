@@ -64,10 +64,10 @@ const deleteRecipe= async(req,res)=>{
 }
 
 const getRecipesByUser = async (req, res) => {
-  const  userId  = req.params.id;
+  const  user_id  = req.params.id;
 
   try {
-    const recipes = await recipesModel.getRecipesByUser(userId);
+    const recipes = await recipesModel.getRecipesByUser(user_id);
     if (!recipes) {
       return res.status(404).json({ message: "Receta no encontrado" });
     }

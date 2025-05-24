@@ -29,9 +29,9 @@ const getRecipeById= async(id)=>{
      return result.rows[0]
 }
 
-const getRecipesByUser= async(userId)=>{
+const getRecipesByUser= async(user_id)=>{
     const result= await db.query(
-       'SELECT * FROM recipes WHERE user_id = $1 ORDER BY title ASC', [userId]
+       'SELECT * FROM recipes WHERE user_id = $1 ORDER BY title ASC', [user_id]
     )
      return result.rows
 }
