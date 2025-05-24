@@ -64,17 +64,23 @@ const deleteRecipe= async(req,res)=>{
 }
 
 const getRecipesByUser = async (req, res) => {
-  const  user_id  = req.params.id;
+    const user_id = req.params.id;
 
   try {
+    console.log("User ID recibido:", user_id);
+
     const recipes = await recipesModel.getRecipesByUser(user_id);
-    if (!recipes) {
-      return res.status(404).json({ message: "Receta no encontrado" });
+
+    console.log("Recetas encontradas:", recipes);
+
+    if (!recipes || recipes.length === 0) {
+      return res.status(404).json({ message: "No se encontraron recetas para este usuario" });
     }
+
     res.json(recipes);
   } catch (error) {
     console.error("Error al obtener las recetas del usuario:", error);
-    res.status(500).json({ message: "Error las recetas del usuario" });
+    res.status(500).json({ message: "Error al obtener las recetas del usuario" });
   }
 };
 

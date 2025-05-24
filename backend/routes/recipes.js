@@ -3,7 +3,7 @@ const router=  express.Router()
 const recipesController= require('../controllers/recipes')
 
 router.get('/',recipesController.getAllRecipes)
-router.get('/user/:user_id',recipesController.getRecipesByUser)
+router.get('/user/:id',recipesController.getRecipesByUser)
 router.get('/:id',recipesController.getRecipeById)
 router.post('/',recipesController.createRecipe)
 router.put('/:id',recipesController.updateRecipe)
