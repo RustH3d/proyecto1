@@ -8,6 +8,8 @@ router.post('/',groupsController.createGroup)
 router.put('/:id',groupsController.updateGroup)
 
 router.delete('/:id',groupsController.deleteGroup)
+router.get('/:id/recipes', groupsController.getRecipesByGroupId);
+
 
 
 

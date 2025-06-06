@@ -45,6 +45,20 @@ const createUser= async(req,res)=>{
     return res.status(400).json({ message: 'Todos los campos son obligatorios' });
   }
 
+  const emailRegex= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if(!emailRegex.test(email)){
+     return res.status(400).json({ message: 'Ingrese un correo valido' });
+  }
+
+  if(username.lenght<3||username.lenght>8){
+     return res.status(400).json({ message: 'El nombre de usuario debe tener entre 3 y 8 caracteres' })
+  }
+
+  if(password.lenght<5){
+     return res.status(400).json({ message: 'La contrase;a debe tener al menos 5 caracteres' })
+  }
+
   try {
     const existingUser = await usersModel.getUserByEmail(email);
     if (existingUser) {

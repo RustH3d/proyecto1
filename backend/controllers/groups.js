@@ -95,11 +95,30 @@ const getGroupsByUser = async (req, res) => {
   }
 };
 
+const getRecipesByGroupId = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const recipes = await groupsModel.getRecipesByGroupId(id);
+
+    if (!recipes || recipes.length === 0) {
+      return res.status(404).json({ message: 'No se encontraron recetas en este grupo' });
+    }
+
+    res.json(recipes);
+  } catch (error) {
+    console.error('Error al obtener recetas del grupo:', error);
+    res.status(500).json({ message: 'Error al obtener recetas del grupo' });
+  }
+};
+
+
 module.exports={
     createGroup,
     updateGroup,
     deleteGroup,
     getAllGroups,
     getGroupsByUser,
-    getGroupsById
+    getGroupsById,
+    getRecipesByGroupId
 }

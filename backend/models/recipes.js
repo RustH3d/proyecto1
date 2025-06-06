@@ -22,6 +22,7 @@ const createRecipe = async ({ user_id, title, ingredients,steps, description }) 
 
 
 
+
 const getRecipeById= async(id)=>{
     const result= await db.query(
         "SELECT * FROM recipes WHERE id = $1", [id]
@@ -62,6 +63,6 @@ module.exports={
     getRecipeById,
     getRecipesByUser,
     updateRecipe,
-    deleteRecipe
+    deleteRecipe,
 
 }

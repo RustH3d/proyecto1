@@ -56,6 +56,17 @@ const updateGroup= async(id,name)=>{
 
 }
 
+const getRecipesByGroupId = async (groupId) => {
+  const query = `
+    SELECT r.* FROM recipes r
+    INNER JOIN recipe_groups rg ON r.id = rg.recipe_id
+    WHERE rg.group_id = $1
+    ORDER BY r.title ASC
+  `;
+  const { rows } = await db.query(query, [groupId]);
+  return rows;
+};
+
 
 
 module.exports={
@@ -64,5 +75,6 @@ module.exports={
     getGroupById,
     getGroupByUser,
     updateGroup,
-    deleteGroup
+    deleteGroup,
+    getRecipesByGroupId
 }
