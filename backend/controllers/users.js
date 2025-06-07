@@ -44,7 +44,7 @@ const createUser= async(req,res)=>{
   if (!username || !email || !password) {
     return res.status(400).json({ message: 'Todos los campos son obligatorios' });
   }
-
+ ///lol
   const emailRegex= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
   if(!emailRegex.test(email)){
